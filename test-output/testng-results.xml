@@ -1,45 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="1" failed="1" skipped="0">
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-07-12T18:55:32 IST" name="Default suite" finished-at="2023-07-12T18:56:02 IST" duration-ms="29552">
+  <suite started-at="2023-07-13T19:05:45 IST" name="Default suite" finished-at="2023-07-13T19:06:19 IST" duration-ms="34203">
     <groups>
     </groups>
-    <test started-at="2023-07-12T18:55:32 IST" name="Default test" finished-at="2023-07-12T18:56:02 IST" duration-ms="29552">
-      <class name="admin.admin_log">
-        <test-method is-config="true" signature="admin_login()[pri:0, instance:admin.admin_log@29215f06]" started-at="2023-07-12T18:55:32 IST" name="admin_login" finished-at="2023-07-12T18:55:43 IST" duration-ms="10695" status="PASS">
+    <test started-at="2023-07-13T19:05:45 IST" name="Default test" finished-at="2023-07-13T19:06:19 IST" duration-ms="34203">
+      <class name="user.register">
+        <test-method is-config="true" signature="admin_login()[pri:0, instance:user.register@28737371]" started-at="2023-07-13T19:05:45 IST" name="admin_login" finished-at="2023-07-13T19:05:55 IST" duration-ms="9820" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- admin_login -->
-        <test-method signature="login()[pri:1, instance:admin.admin_log@29215f06]" started-at="2023-07-12T18:55:43 IST" name="login" finished-at="2023-07-12T18:55:57 IST" duration-ms="13734" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- login -->
-        <test-method signature="create_event()[pri:2, instance:admin.admin_log@29215f06]" started-at="2023-07-12T18:55:57 IST" name="create_event" finished-at="2023-07-12T18:56:02 IST" duration-ms="5028" status="FAIL">
-          <exception class="org.openqa.selenium.StaleElementReferenceException">
+        <test-method signature="register()[pri:0, instance:user.register@28737371]" started-at="2023-07-13T19:05:55 IST" name="register" finished-at="2023-07-13T19:06:19 IST" duration-ms="24320" status="FAIL">
+          <exception class="org.openqa.selenium.ElementNotInteractableException">
             <message>
-              <![CDATA[stale element reference: stale element not found
+              <![CDATA[element not interactable: element has zero size
   (Session info: chrome=114.0.5735.198)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#stale_element_reference
 Build info: version: '4.5.0', revision: 'fe167b119a'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '5.15.0-76-generic', java.version: '17.0.5'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [a04c0390f649144697f4c9430eabd088, getElementText {id=AC610462D9634C5B2273EDB298126032_element_144}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 114.0.5735.198, chrome: {chromedriverVersion: 114.0.5735.90 (386bc09e8f4f..., userDataDir: /tmp/.com.google.Chrome.4wQHX4}, goog:chromeOptions: {debuggerAddress: localhost:39333}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:39333/devtoo..., se:cdpVersion: 114.0.5735.198, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on LINUX (a04c0390f649144697f4c9430eabd088)] -> xpath: //div[@role="listbox"]//mat-option]
-Session ID: a04c0390f649144697f4c9430eabd088]]>
+Command: [9dc37cb30f5117eb101c37c3d5aa494b, clickElement {id=2D58462610AD70C46EED452D25C6F9C4_element_46}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 114.0.5735.198, chrome: {chromedriverVersion: 114.0.5735.90 (386bc09e8f4f..., userDataDir: /tmp/.com.google.Chrome.f7XgHd}, goog:chromeOptions: {debuggerAddress: localhost:40517}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:40517/devtoo..., se:cdpVersion: 114.0.5735.198, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on LINUX (9dc37cb30f5117eb101c37c3d5aa494b)] -> xpath: //table[@class="table-striped jambo_table"]]
+Session ID: 9dc37cb30f5117eb101c37c3d5aa494b]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.StaleElementReferenceException: stale element reference: stale element not found
+              <![CDATA[org.openqa.selenium.ElementNotInteractableException: element not interactable: element has zero size
   (Session info: chrome=114.0.5735.198)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#stale_element_reference
 Build info: version: '4.5.0', revision: 'fe167b119a'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '5.15.0-76-generic', java.version: '17.0.5'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [a04c0390f649144697f4c9430eabd088, getElementText {id=AC610462D9634C5B2273EDB298126032_element_144}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 114.0.5735.198, chrome: {chromedriverVersion: 114.0.5735.90 (386bc09e8f4f..., userDataDir: /tmp/.com.google.Chrome.4wQHX4}, goog:chromeOptions: {debuggerAddress: localhost:39333}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:39333/devtoo..., se:cdpVersion: 114.0.5735.198, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on LINUX (a04c0390f649144697f4c9430eabd088)] -> xpath: //div[@role="listbox"]//mat-option]
-Session ID: a04c0390f649144697f4c9430eabd088
+Command: [9dc37cb30f5117eb101c37c3d5aa494b, clickElement {id=2D58462610AD70C46EED452D25C6F9C4_element_46}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 114.0.5735.198, chrome: {chromedriverVersion: 114.0.5735.90 (386bc09e8f4f..., userDataDir: /tmp/.com.google.Chrome.f7XgHd}, goog:chromeOptions: {debuggerAddress: localhost:40517}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:40517/devtoo..., se:cdpVersion: 114.0.5735.198, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on LINUX (9dc37cb30f5117eb101c37c3d5aa494b)] -> xpath: //table[@class="table-striped jambo_table"]]
+Session ID: 9dc37cb30f5117eb101c37c3d5aa494b
 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -53,8 +47,8 @@ at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(Driver
 at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:158)
 at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
 at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:257)
-at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:207)
-at admin.admin_log.create_event(admin_log.java:96)
+at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:78)
+at user.register.register(register.java:136)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -85,15 +79,11 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.StaleElementReferenceException -->
+          </exception> <!-- org.openqa.selenium.ElementNotInteractableException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- create_event -->
-        <test-method is-config="true" signature="close()[pri:0, instance:admin.admin_log@29215f06]" started-at="2023-07-12T18:56:02 IST" name="close" finished-at="2023-07-12T18:56:02 IST" duration-ms="1" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- close -->
-      </class> <!-- admin.admin_log -->
+        </test-method> <!-- register -->
+      </class> <!-- user.register -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

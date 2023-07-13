@@ -3,13 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="admin.admin_log">
+      <class name="user.register">
         <methods>
-          <include name="create_event"/>
+          <include name="register"/>
           <include name="admin_login"/>
-          <include name="close"/>
         </methods>
-      </class> <!-- admin.admin_log -->
+      </class> <!-- user.register -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
