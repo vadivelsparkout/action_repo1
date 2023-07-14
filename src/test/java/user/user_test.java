@@ -1,5 +1,6 @@
 package user;
 
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -14,6 +15,11 @@ public class user_test {
 	@Test
 	public void user_log() throws InterruptedException {
 		register.register();
+	}
+	
+	@AfterTest
+	public void close() throws InterruptedException {
+		 register.close();
 	}
 
 }

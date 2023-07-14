@@ -3,12 +3,14 @@ package user;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
@@ -29,6 +31,8 @@ public class register {
 	static String Email=Nemail+"@mailinator.com";
 	static String user=Email;
 	static String phoneNumber = faker.phoneNumber().phoneNumber();
+	static String password="test@123";
+	static String url="https://www.codespotfoundation.org/app/user-sign-up";
 	
 	
 	public static Object admin_login() throws InterruptedException {
@@ -39,7 +43,7 @@ public class register {
 		//options.addArguments("--headless");
 		options.addArguments("start-maximized");
 		driver = new ChromeDriver(options);
-		driver.get("https://www.codespotfoundation.org/app/user-sign-up");
+		driver.get(url);
 		Thread.sleep(5000);
 		return null;
 		
@@ -52,7 +56,7 @@ public class register {
 		driver.findElement(By.xpath("//input[@id='last-name']")).sendKeys(lastName);
 		driver.findElement(By.xpath("//input[@id='email']")).sendKeys(Email);
 		driver.findElement(By.xpath("//input[@id='mat-input-3']")).sendKeys(phoneNumber);
-		driver.findElement(By.xpath("//input[@id='password']")).sendKeys("test@123");
+		driver.findElement(By.xpath("//input[@id='password']")).sendKeys(password);
 		Thread.sleep(3000);
 		driver.findElement(By.xpath("(//button[@type='button'])[4]")).click();
 		//driver.findElement(By.xpath("//input[@data-placeholder=\"Search your College\"]")).sendKeys("PSG College of Technology");
@@ -147,16 +151,33 @@ public class register {
 		WebElement verify=driver.findElement(By.xpath("//a[text()='Verify Account']"));
 		
 		 js.executeScript("arguments[0].click();", verify);
-		
-		
-		
-		return null;
-	
+		 
+		 String parent=driver.getWindowHandle();
+		 ArrayList<String> windowHandles = new ArrayList<String>(driver.getWindowHandles());
+	for (String handle : windowHandles) {
+		String str=handle.toString();
+		if(!(str.equals(parent))) {
 			
-		
-	
-		
-		
+            driver.switchTo().window(handle);
+            Thread.sleep(30000);
+    		driver.findElement(By.xpath("//input[@id='email']")).sendKeys(user);
+    		driver.findElement(By.xpath("//input[@id='password']")).sendKeys(password);
+    		Thread.sleep(4000);
+    		driver.findElement(By.xpath("//span[text()=' Login ']")).click();
+            
+           
+        }
 		
 	}
+		
+		return null;
+		
+	}
+	public static Object close() throws InterruptedException {
+		Thread.sleep(5000);
+		driver.quit();
+		return null;
+	}
+	
+	
 }
