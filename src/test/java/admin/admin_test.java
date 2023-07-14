@@ -13,6 +13,7 @@ public class admin_test {
 	
 	@Test
 	public void event_create() throws InterruptedException {
+		admin_log.login();
 		admin_log.create_event();
 	}
 
