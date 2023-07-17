@@ -4,22 +4,22 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class user_test {
-	
+public class user_flow_testing {
+
 	@BeforeTest
 	public void set() throws InterruptedException {
-		register.admin_login();
+		user_register.admin_login();
 	}
-	
-	
+
 	@Test
 	public void user_log() throws InterruptedException {
-		register.register();
+		user_register.register();
+		apply_event.event_apply();
 	}
-	
+
 	@AfterTest
 	public void close() throws InterruptedException {
-		 register.close();
+		user_register.close();
 	}
 
 }
