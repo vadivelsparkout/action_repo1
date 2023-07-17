@@ -13,13 +13,13 @@ public class certificate_generation extends admin_log {
 		//click event staus
 		driver.findElement(By.xpath("//span[contains(text(),' Event Status ')]")).click();
 		//get event names
-		List<WebElement> names = driver.findElements(By.xpath("//table[@role='table']//tr/td[2]"));
+		List<WebElement> names = driver.findElements(By.xpath("//table[@role='table']//tr//td[2]"));
 		for (WebElement name : names) {
 			String event_name = name.getText();
 			Thread.sleep(5000);
 			if ((event_name).equalsIgnoreCase(certificate_event)) {
 				Thread.sleep(5000);
-				name.findElement(By.xpath("//table[@role='table']//tr/td[5]")).click();
+				name.findElement(By.xpath("//table[@role='table']//tr//td[5]")).click();
 			}
 		}	
 	}

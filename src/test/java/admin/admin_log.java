@@ -49,8 +49,8 @@ public class admin_log {
 
 	public static void login() throws InterruptedException {
 
-		driver.findElement(By.xpath("//input[@id=\"email\"]")).sendKeys("Super@mailinator.com");
-		driver.findElement(By.xpath("//input[@id=\"password\"]")).sendKeys("test@123");
+		driver.findElement(By.xpath("//input[@id='email']")).sendKeys("Super@mailinator.com");
+		driver.findElement(By.xpath("//input[@id='password']")).sendKeys("test@123");
 		Thread.sleep(3000);
 		driver.findElement(By.xpath("//span[contains(text(),' Login ')]")).click();
 		Thread.sleep(10000);
@@ -65,7 +65,7 @@ public class admin_log {
 		// click create event
 		driver.findElement(By.xpath("//span[contains(text(),' Create Event ')]")).click();
 		// create event title
-		driver.findElement(By.xpath("//input[@id=\"event-title\"]")).sendKeys("test event");
+		driver.findElement(By.xpath("//input[@id='event-title']")).sendKeys("test event");
 		// click session or workshop
 		driver.findElement(By.xpath("//span[contains(text(),'Workshop ')]")).click();
 		Thread.sleep(3000);
@@ -75,14 +75,14 @@ public class admin_log {
 		banner.sendKeys("/home/sparkout/eclipse-workspace/codespot/src/main/resources/banner.jpeg");
 		Thread.sleep(6000);
 		// banner description
-		driver.findElement(By.xpath("(//div[@data-placeholder=\"Insert text here ...\"])[1]")).sendKeys(description);
+		driver.findElement(By.xpath("(//div[@data-placeholder='Insert text here ...'])[1]")).sendKeys(description);
 		// event agenda
-		driver.findElement(By.xpath("(//div[@data-placeholder=\"Insert text here ...\"])[2]")).sendKeys(agenda);
+		driver.findElement(By.xpath("(//div[@data-placeholder='Insert text here ...'])[2]")).sendKeys(agenda);
 		// add tags
 		List<String> tags = new ArrayList<String>();
 		tags.add("new");
 		tags.add("event");
-		WebElement new_tag = driver.findElement(By.xpath("//input[@id=\"mat-chip-list-input-0\"]"));
+		WebElement new_tag = driver.findElement(By.xpath("//input[@id='mat-chip-list-input-0']"));
 		for (String tag : tags) {
 			new_tag.sendKeys(tag);
 			new_tag.sendKeys(Keys.ENTER);
@@ -179,16 +179,16 @@ public class admin_log {
 		// Perform actions with the random element
 		randomElement.click();
 		// add speaker name
-		driver.findElement(By.xpath("//input[@id=\"speaker-name\"]")).sendKeys("test speaker");
+		driver.findElement(By.xpath("//input[@id='speaker-name']")).sendKeys("test speaker");
 		// add speaker image
 		WebElement profile = driver.findElement(By.xpath("(//input[@type='file'])[2]"));
 		System.out.println(profile.isEnabled());
 		profile.sendKeys("/home/sparkout/eclipse-workspace/codespot/src/main/resources/banner.jpeg");
 		Thread.sleep(6000);
 		// add link
-		driver.findElement(By.xpath("//input[@id=\"link\"]")).sendKeys("https://www.linkedin.com/login");
+		driver.findElement(By.xpath("//input[@id='link']")).sendKeys("https://www.linkedin.com/login");
 		// add designation
-		driver.findElement(By.xpath("//input[@id=\"designation\"]")).sendKeys("CEO");
+		driver.findElement(By.xpath("//input[@id='designation']")).sendKeys("CEO");
 		Thread.sleep(4000);
 		// save
 		driver.findElement(By.xpath("//span[contains(text(),'Save')]")).click();
