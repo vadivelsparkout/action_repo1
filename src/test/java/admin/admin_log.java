@@ -7,6 +7,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.sl.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Row;
@@ -27,181 +28,410 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import dev.failsafe.Timeout;
 
 public class admin_log {
 
 	static WebDriver driver;
+
 	static String description = "RevolutionizeTech: Inspiring Minds, Empowering Innovators";
-	static String agenda = "TechXpo: Explore the Future of Technology, Robotics, Artificial Intelligence, Cybersecurity, and Data Science";
+
+	static String agenda = "TechXpo: Explore the Future of Technology, Robotics, Artificial Intelligence,Cybersecurity, and Data Science";
+
+	static String certificate_event = "Testing";
 
 	public static WebDriver admin_login() throws InterruptedException {
 
 		System.setProperty("webdriver.http.factory", "jdk-http-client");
+
 		driver = new ChromeDriver();
+
 		ChromeOptions options = new ChromeOptions();
+
 		options.addArguments("-allow-origins", "http://127.0.0.1:45411/");
+
 		driver.manage().window().maximize();
+
 		driver.get("https://www.codespotfoundation.org/app/sign-in");
-		Thread.sleep(5000);
+
 		return driver;
 
 	}
 
-	public static void login() throws InterruptedException {
 
-		driver.findElement(By.xpath("//input[@id='email']")).sendKeys("Super@mailinator.com");
-		driver.findElement(By.xpath("//input[@id='password']")).sendKeys("test@123");
-		Thread.sleep(3000);
-		driver.findElement(By.xpath("//span[contains(text(),' Login ')]")).click();
-		Thread.sleep(10000);
 	
+	public static void login() throws InterruptedException {
+		 
+		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(20));
+		
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//input[@id='email']")));
+		
+		WebElement email = driver.findElement(By.xpath("//input[@id='email']"));
+		
+		email.sendKeys("Super@mailinator.com");
 
-	}
+		WebElement password = driver.findElement(By.xpath("//input[@id='password']"));
+		
+		password.sendKeys("test@123");
 
-	public static void create_event() throws InterruptedException {
+		WebElement login=driver.findElement(By.xpath("//span[contains(text(),' Login ')]"));
+		
+		wait.until(ExpectedConditions.elementToBeClickable(login));
+		
+		login.click();
+		
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(" //span[contains(text(),' Event Management ')]")));
 
 		// click event management
-		driver.findElement(By.xpath(" //span[contains(text(),' Event Management ')]")).click();
+		WebElement Event_Management=driver.findElement(By.xpath(" //span[contains(text(),' Event Management ')]"));
+		
+		Event_Management.click();
+		
+	}
+
+	
+	public static void create_event() throws InterruptedException {
+		 
+		 WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(20));
+
 		// click create event
-		driver.findElement(By.xpath("//span[contains(text(),' Create Event ')]")).click();
+		WebElement create_event=driver.findElement(By.xpath("//span[contains(text(),' Create Event ')]"));
+		
+		create_event.click();
+
 		// create event title
-		driver.findElement(By.xpath("//input[@id='event-title']")).sendKeys("test event");
+		WebElement event_title=driver.findElement(By.xpath("//input[@id='event-title']"));
+		
+		event_title.sendKeys("test event");
+
 		// click session or workshop
-		driver.findElement(By.xpath("//span[contains(text(),'Workshop ')]")).click();
-		Thread.sleep(3000);
+		WebElement event_type=driver.findElement(By.xpath("//span[contains(text(),'Workshop ')]"));
+		
+		event_type.click();
+
 		// add banner
 		WebElement banner = driver.findElement(By.xpath("(//input[@type='file'])[1]"));
-		System.out.println(banner.isEnabled());
+
 		banner.sendKeys("/home/sparkout/eclipse-workspace/codespot/src/main/resources/banner.jpeg");
-		Thread.sleep(6000);
+
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("(//div[@data-placeholder='Insert text here ...'])[1]")));
+		
 		// banner description
-		driver.findElement(By.xpath("(//div[@data-placeholder='Insert text here ...'])[1]")).sendKeys(description);
+		WebElement banner_description=driver.findElement(By.xpath("(//div[@data-placeholder='Insert text here ...'])[1]"));
+		
+	   
+		banner_description.sendKeys(description);
+
 		// event agenda
-		driver.findElement(By.xpath("(//div[@data-placeholder='Insert text here ...'])[2]")).sendKeys(agenda);
+		WebElement event_agenda=driver.findElement(By.xpath("(//div[@data-placeholder='Insert text here ...'])[2]"));
+		
+		event_agenda.sendKeys(agenda);
+
 		// add tags
 		List<String> tags = new ArrayList<String>();
+
 		tags.add("new");
+
 		tags.add("event");
+
 		WebElement new_tag = driver.findElement(By.xpath("//input[@id='mat-chip-list-input-0']"));
+
 		for (String tag : tags) {
+
 			new_tag.sendKeys(tag);
+
 			new_tag.sendKeys(Keys.ENTER);
+
 			new_tag.sendKeys(Keys.TAB);
+
 		}
+
 		driver.findElement(By.xpath("(//button[@type='button'])[17]")).click();
+
 		driver.findElement(By.xpath("//button[@cdkarialive='polite']")).click();
-		Thread.sleep(5000);
+
 		// year selected
+		
 		List<WebElement> years = driver.findElements(By.xpath("//table[@class='mat-calendar-table']//tbody//tr//td"));
+
 		for (WebElement year : years) {
+
 			String yname = year.getText();
+
 			if (yname.equalsIgnoreCase("2024")) {
+
 				year.click();
+
 				break;
+
 			}
+
 		}
+
 		// month selected
-		Thread.sleep(5000);
+
 		List<WebElement> Months = driver.findElements(By.xpath("//table[@class='mat-calendar-table']//tbody//tr//td"));
+
 		for (WebElement month : Months) {
+
 			String mname = month.getText();
+
 			if (mname.equalsIgnoreCase("JUL")) {
+
 				month.click();
+
 				break;
+
 			}
+
 		}
+
 		// day selected
-		Thread.sleep(4000);
+		
 		List<WebElement> days = driver.findElements(By.xpath("//table[@class='mat-calendar-table']//tbody//tr//td"));
 
 		for (WebElement day : days) {
+
 			String dname = day.getText();
+
 			if (dname.equalsIgnoreCase("12")) {
+
 				day.click();
+
 				break;
+
 			}
+
 		}
+
 		// s1 selected
+		
 		driver.findElement(By.xpath("//mat-select[@id='mat-select-0']")).click();
+
 		List<WebElement> stime1 = driver.findElements(By.xpath("//mat-option[@role='option']"));
+
 		for (WebElement stimea : stime1) {
+
 			String n1 = stimea.getText();
+
 			if (n1.equalsIgnoreCase("03")) {
+
 				stimea.click();
+
 				break;
+
 			}
+
 		}
+
 		// s2 selected
-		Thread.sleep(4000);
+		
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//mat-select[@id='mat-select-2']")));
+		
 		driver.findElement(By.xpath("//mat-select[@id='mat-select-2']")).click();
+
 		List<WebElement> stime2 = driver.findElements(By.xpath("//mat-option[@role='option']"));
+
 		for (WebElement stimeb : stime2) {
+
 			String n2 = stimeb.getText();
+
 			if (n2.equalsIgnoreCase("40")) {
+
 				stimeb.click();
+
 				break;
+
 			}
+
 		}
+		
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//mat-select[@id='mat-select-4']")));
+
 		// s3 selected
-		Thread.sleep(4000);
+		
 		driver.findElement(By.xpath("//mat-select[@id='mat-select-4']")).click();
+
 		List<WebElement> stime3 = driver.findElements(By.xpath("//mat-option[@aria-disabled='false']"));
+
 		for (WebElement stimec : stime3) {
+
 			String n3 = stimec.getText();
+
 			if (n3.equalsIgnoreCase("20")) {
+
 				stimec.click();
+
 				break;
+
 			}
+
 		}
+		
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//mat-select[@id='mat-select-6']")));
+
 		// s4 selectetd
-		Thread.sleep(3000);
+		
 		driver.findElement(By.xpath("//mat-select[@id='mat-select-6']")).click();
+
 		List<WebElement> stime4 = driver.findElements(By.xpath("//mat-option[@role='option']"));
+
 		for (WebElement stimed : stime4) {
+
 			String n4 = stimed.getText();
+
 			if (n4.equalsIgnoreCase("15")) {
+
 				stimed.click();
+
 				break;
+
 			}
+
 		}
-		WebElement vn = driver.findElement(By.xpath("//input[@id='venue']"));
-		// click venue
-		vn.sendKeys("North Coimbatore, Coimbatore, Tamil Nadu, India");
-		Thread.sleep(10000);
+
+		// select venue
+		WebElement venue = driver.findElement(By.xpath("//input[@id='venue']"));
+
+		venue.sendKeys("North Coimbatore, Coimbatore, Tamil Nadu, India");
+		
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='pac-item']")));
+
 		List<WebElement> gsuggestions = driver.findElements(By.xpath("//div[@class='pac-item']"));
+		
 		// Get the size of the list
 		int size = gsuggestions.size();
+
 		// Generate a random index
 		Random random = new Random();
+
 		int randomIndex = random.nextInt(size);
+
 		// Select the random element
 		WebElement randomElement = gsuggestions.get(randomIndex);
+
 		// Perform actions with the random element
 		randomElement.click();
+
 		// add speaker name
-		driver.findElement(By.xpath("//input[@id='speaker-name']")).sendKeys("test speaker");
+		WebElement speaker_name=driver.findElement(By.xpath("//input[@id='speaker-name']"));
+		
+		speaker_name.sendKeys("test speaker");
+
 		// add speaker image
 		WebElement profile = driver.findElement(By.xpath("(//input[@type='file'])[2]"));
-		System.out.println(profile.isEnabled());
+
 		profile.sendKeys("/home/sparkout/eclipse-workspace/codespot/src/main/resources/banner.jpeg");
-		Thread.sleep(6000);
+
 		// add link
-		driver.findElement(By.xpath("//input[@id='link']")).sendKeys("https://www.linkedin.com/login");
+		WebElement link=driver.findElement(By.xpath("//input[@id='link']"));
+		
+		link.sendKeys("https://www.linkedin.com/login");
+
 		// add designation
-		driver.findElement(By.xpath("//input[@id='designation']")).sendKeys("CEO");
-		Thread.sleep(4000);
+		WebElement designation=driver.findElement(By.xpath("//input[@id='designation']"));
+		
+		designation.sendKeys("CEO");
+
 		// save
-		driver.findElement(By.xpath("//span[contains(text(),'Save')]")).click();
+		WebElement save=driver.findElement(By.xpath("//span[contains(text(),'Save')]"));
+		
+		save.click();
 
 	}
 
+	
+	public static void certificate_creation() throws InterruptedException {
+		
+		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(20));
 
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//span[contains(text(),' Event Status ')]")));
 
-	@AfterClass
-	public void close() throws InterruptedException {
+		String eventStatus = null;
+
+		// click event staus
+		driver.findElement(By.xpath("//span[contains(text(),' Event Status ')]")).click();
+
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//table[@role='table']//tr//td[2]")));
+
+		// get event names
+		List<WebElement> names = driver.findElements(By.xpath("//table[@role='table']//tr//td[2]"));
+
+		String[] textArray = new String[names.size()];
+
+		for (int i = 0; i < names.size(); i++) {
+
+			textArray[i] = names.get(i).getText();
+
+		}
+
+		String targetString = "August Event";
+
+		int targetIndex = 0;
+
+		for (int i = 0; i < textArray.length; i++) {
+
+			String text = textArray[i];
+
+			if (text.equalsIgnoreCase(targetString)) {
+
+				targetIndex = i + 1;
+
+				System.out.println(targetIndex);
+
+				String targetIndexString = String.valueOf(targetIndex);
+
+				String xpath = "(//table[@role='table']//tr//td[5])[" + targetIndexString + "]";
+
+				WebElement Status = driver.findElement(By.xpath(xpath));
+
+				eventStatus	 = Status.getText();
+
+				System.out.println(eventStatus);
+			
+
+				switch (eventStatus) {
+
+				case "Event Not Complete":
+
+					System.out.println("sorry your event status is :"+eventStatus);
+
+					break;
+
+				case "Issued":
+
+					System.out.println("sorry your event status is :"+eventStatus);
+
+					break;
+
+				case "Generate":
+
+					Status.click();
+					
+					driver.findElement(By.xpath("(//button[text()='Ok'])[1]")).click();
+					
+					// driver.findElement(By.xpath("(//button[text()='Cancel'])[1]")).click();
+
+					break;
+					
+			  default:
+				  
+			            System.out.println("Unknown event status: " + eventStatus);
+			            
+			            break;
+
+				}	
+
+			}
+
+		}
+
+	}
+
+	public static void close() throws InterruptedException {
 
 		Thread.sleep(3000);
-		System.out.println("event created");
+
 		driver.quit();
 
 	}
