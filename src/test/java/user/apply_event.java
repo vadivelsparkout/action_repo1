@@ -41,19 +41,17 @@ public class apply_event extends user_register {
 
 		}
 
-		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("(//button[@type='button'])[2]")));
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//button[contains(text(),' Attend Event ')]")));
 
 		// click apply event
-		WebElement apply_event = driver.findElement(By.xpath("(//button[@type='button'])[2]"));
+		WebElement apply_event = driver.findElement(By.xpath("//button[contains(text(),' Attend Event ')]"));
 
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 
 		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", apply_event);
-
-		wait.until(ExpectedConditions.elementToBeClickable(apply_event));
-
-		apply_event.click();
-
+		
+		jsExecutor.executeScript("arguments[0].click();", apply_event);
+		
 		System.out.println("Event applied ");
 
 	}

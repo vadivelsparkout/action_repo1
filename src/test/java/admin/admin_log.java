@@ -44,11 +44,23 @@ public class admin_log {
 
 		System.setProperty("webdriver.http.factory", "jdk-http-client");
 
-		driver = new ChromeDriver();
+		//driver = new ChromeDriver();
 
 		ChromeOptions options = new ChromeOptions();
 
 		options.addArguments("-allow-origins", "http://127.0.0.1:45411/");
+
+		options.addArguments("--window-size=1920,1080");
+
+		options.addArguments("--allow-insecure-localhost");
+
+		options.addArguments("--headless");
+
+		options.addArguments("--disable-gpu");
+
+		options.addArguments("--no-sandbox");
+
+		driver = new ChromeDriver(options);
 
 		driver.manage().window().maximize();
 
@@ -59,54 +71,58 @@ public class admin_log {
 	}
 
 
-	
+
 	public static void login() throws InterruptedException {
-		 
+
 		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(20));
-		
+
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//input[@id='email']")));
-		
+
 		WebElement email = driver.findElement(By.xpath("//input[@id='email']"));
-		
+
 		email.sendKeys("Super@mailinator.com");
 
 		WebElement password = driver.findElement(By.xpath("//input[@id='password']"));
-		
+
 		password.sendKeys("test@123");
 
 		WebElement login=driver.findElement(By.xpath("//span[contains(text(),' Login ')]"));
-		
+
 		wait.until(ExpectedConditions.elementToBeClickable(login));
-		
+
 		login.click();
-		
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(" //span[contains(text(),' Event Management ')]")));
+
+		System.out.println("login sucessfull");
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(" //span[contains(text(),' Event Management ')]")));
 
 		// click event management
 		WebElement Event_Management=driver.findElement(By.xpath(" //span[contains(text(),' Event Management ')]"));
-		
+
 		Event_Management.click();
-		
+
+		System.out.println("event management clicked");
+
 	}
 
-	
+
 	public static void create_event() throws InterruptedException {
-		 
-		 WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(20));
+
+		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(20));
 
 		// click create event
 		WebElement create_event=driver.findElement(By.xpath("//span[contains(text(),' Create Event ')]"));
-		
+
 		create_event.click();
 
 		// create event title
 		WebElement event_title=driver.findElement(By.xpath("//input[@id='event-title']"));
-		
+
 		event_title.sendKeys("test event");
 
 		// click session or workshop
 		WebElement event_type=driver.findElement(By.xpath("//span[contains(text(),'Workshop ')]"));
-		
+
 		event_type.click();
 
 		// add banner
@@ -115,16 +131,16 @@ public class admin_log {
 		banner.sendKeys("/home/sparkout/eclipse-workspace/codespot/src/main/resources/banner.jpeg");
 
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("(//div[@data-placeholder='Insert text here ...'])[1]")));
-		
+
 		// banner description
 		WebElement banner_description=driver.findElement(By.xpath("(//div[@data-placeholder='Insert text here ...'])[1]"));
-		
-	   
+
+
 		banner_description.sendKeys(description);
 
 		// event agenda
 		WebElement event_agenda=driver.findElement(By.xpath("(//div[@data-placeholder='Insert text here ...'])[2]"));
-		
+
 		event_agenda.sendKeys(agenda);
 
 		// add tags
@@ -151,7 +167,7 @@ public class admin_log {
 		driver.findElement(By.xpath("//button[@cdkarialive='polite']")).click();
 
 		// year selected
-		
+
 		List<WebElement> years = driver.findElements(By.xpath("//table[@class='mat-calendar-table']//tbody//tr//td"));
 
 		for (WebElement year : years) {
@@ -187,7 +203,7 @@ public class admin_log {
 		}
 
 		// day selected
-		
+
 		List<WebElement> days = driver.findElements(By.xpath("//table[@class='mat-calendar-table']//tbody//tr//td"));
 
 		for (WebElement day : days) {
@@ -205,8 +221,10 @@ public class admin_log {
 		}
 
 		// s1 selected
-		
+
 		driver.findElement(By.xpath("//mat-select[@id='mat-select-0']")).click();
+		
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//mat-option[@role='option']")));
 
 		List<WebElement> stime1 = driver.findElements(By.xpath("//mat-option[@role='option']"));
 
@@ -225,10 +243,12 @@ public class admin_log {
 		}
 
 		// s2 selected
-		
+
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//mat-select[@id='mat-select-2']")));
-		
+
 		driver.findElement(By.xpath("//mat-select[@id='mat-select-2']")).click();
+		
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//mat-option[@role='option']")));
 
 		List<WebElement> stime2 = driver.findElements(By.xpath("//mat-option[@role='option']"));
 
@@ -245,12 +265,14 @@ public class admin_log {
 			}
 
 		}
-		
+
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//mat-select[@id='mat-select-4']")));
 
 		// s3 selected
-		
+
 		driver.findElement(By.xpath("//mat-select[@id='mat-select-4']")).click();
+		
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//mat-option[@aria-disabled='false']")));
 
 		List<WebElement> stime3 = driver.findElements(By.xpath("//mat-option[@aria-disabled='false']"));
 
@@ -267,12 +289,15 @@ public class admin_log {
 			}
 
 		}
-		
+
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//mat-select[@id='mat-select-6']")));
 
 		// s4 selectetd
-		
+
 		driver.findElement(By.xpath("//mat-select[@id='mat-select-6']")).click();
+		
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//mat-option[@role='option']")));
+
 
 		List<WebElement> stime4 = driver.findElements(By.xpath("//mat-option[@role='option']"));
 
@@ -294,11 +319,11 @@ public class admin_log {
 		WebElement venue = driver.findElement(By.xpath("//input[@id='venue']"));
 
 		venue.sendKeys("North Coimbatore, Coimbatore, Tamil Nadu, India");
-		
+
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='pac-item']")));
 
 		List<WebElement> gsuggestions = driver.findElements(By.xpath("//div[@class='pac-item']"));
-		
+
 		// Get the size of the list
 		int size = gsuggestions.size();
 
@@ -315,7 +340,7 @@ public class admin_log {
 
 		// add speaker name
 		WebElement speaker_name=driver.findElement(By.xpath("//input[@id='speaker-name']"));
-		
+
 		speaker_name.sendKeys("test speaker");
 
 		// add speaker image
@@ -325,24 +350,26 @@ public class admin_log {
 
 		// add link
 		WebElement link=driver.findElement(By.xpath("//input[@id='link']"));
-		
+
 		link.sendKeys("https://www.linkedin.com/login");
 
 		// add designation
 		WebElement designation=driver.findElement(By.xpath("//input[@id='designation']"));
-		
+
 		designation.sendKeys("CEO");
 
 		// save
 		WebElement save=driver.findElement(By.xpath("//span[contains(text(),'Save')]"));
 		
+		wait.until(ExpectedConditions.elementToBeClickable(save));
+		
 		save.click();
 
 	}
 
-	
+
 	public static void certificate_creation() throws InterruptedException {
-		
+
 		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(20));
 
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//span[contains(text(),' Event Status ')]")));
@@ -365,15 +392,17 @@ public class admin_log {
 
 		}
 
-		String targetString = "August Event";
+		String targetString = "Test 22";
 
 		int targetIndex = 0;
 
 		for (int i = 0; i < textArray.length; i++) {
 
 			String text = textArray[i];
+			
+			System.out.println(text);
 
-			if (text.equalsIgnoreCase(targetString)) {
+			if (text.matches(targetString)) {
 
 				targetIndex = i + 1;
 
@@ -384,11 +413,13 @@ public class admin_log {
 				String xpath = "(//table[@role='table']//tr//td[5])[" + targetIndexString + "]";
 
 				WebElement Status = driver.findElement(By.xpath(xpath));
+				
+				wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(xpath)));
 
 				eventStatus	 = Status.getText();
 
 				System.out.println(eventStatus);
-			
+
 
 				switch (eventStatus) {
 
@@ -407,21 +438,21 @@ public class admin_log {
 				case "Generate":
 
 					Status.click();
-					
+
 					driver.findElement(By.xpath("(//button[text()='Ok'])[1]")).click();
-					
+
 					// driver.findElement(By.xpath("(//button[text()='Cancel'])[1]")).click();
 
 					break;
-					
-			  default:
-				  
-			            System.out.println("Unknown event status: " + eventStatus);
-			            
-			            break;
+
+				default:
+
+					System.out.println("Unknown event status: " + eventStatus);
+
+					break;
 
 				}	
-
+                    break;
 			}
 
 		}
