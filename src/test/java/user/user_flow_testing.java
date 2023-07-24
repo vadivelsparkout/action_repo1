@@ -22,7 +22,6 @@ public class user_flow_testing {
 		
 	}
 	
-
 	@AfterTest
 	public void close() throws InterruptedException {
 		
