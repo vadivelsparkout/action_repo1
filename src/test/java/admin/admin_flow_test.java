@@ -18,7 +18,7 @@ public class admin_flow_test {
 		
 		admin_log.login();
 		
-     	//admin_log.create_event();
+     	admin_log.create_event();
 		
 		admin_log.certificate_creation();
 	

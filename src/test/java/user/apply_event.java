@@ -24,7 +24,7 @@ public class apply_event extends user_register {
 
 			String t = event_title.getText();
 
-			if (t.equalsIgnoreCase("Test24")) {
+			if (t.equalsIgnoreCase("test event")) {
 
 				// click the required event
 				event_title.click();

@@ -99,6 +99,8 @@ public class admin_log {
 		WebElement create_event=driver.findElement(By.xpath("//span[contains(text(),' Create Event ')]"));
 
 		create_event.click();
+		
+		System.out.println("create event clicked");
 
 		// create event title
 		WebElement event_title=driver.findElement(By.xpath("//input[@id='event-title']"));
@@ -112,6 +114,8 @@ public class admin_log {
 
 		// add banner
 		WebElement banner = driver.findElement(By.xpath("(//input[@type='file'])[1]"));
+		
+		//banner.sendKeys("/banner.jpeg");
 
 		banner.sendKeys("/home/sparkout/eclipse-workspace/codespot/src/main/resources/banner.jpeg");
 
